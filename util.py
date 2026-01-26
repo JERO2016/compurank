@@ -21,8 +21,20 @@ def is_prime(number):
     pass
 
 
-def is_leap_year(year):
-    pass
+def is_leap_year(year):                     # Defines the function. Year is the value to be evaluated
+    if not isinstance(year, int):           # Checks that the value is an integer
+        return None                         # If it is not, then return None
+    
+    if year % 400 == 0:                     # If it is divisible by 400
+        return True                         # Then it is a leap year
+    
+    if year % 100 == 0:                     # If it is divisible by 100
+        return False                        # Then it is not a leap year
+    
+    if year % 4 == 0:                       # If it is divisible by 4
+        return True                         # Then it is a leap yea
+    
+    return False                            # In any other case, it is not
 
 
 def do_calculator(expression):

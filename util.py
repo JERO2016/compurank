@@ -14,22 +14,26 @@ def is_palindrome(str_to_evaluate):         # Palindrome is a word that can be r
 
 
 def is_fizzbuzz(number):                    # Classic exercise: if it is divisible by 3, return "Fizz"; if divisible by 5, return "Buzz"; if divisible by both, return "FizzBuzz"
-    try:
-        num = int(number)                   # Tries to execute the code; if an error occurs, it will jump to the except block
-    except (ValueError, TypeError):         # ValueError when it cannot be converted. TypeError when the type is incompatible.
-        return None                         # If the above occurs, then the function ends 
+    if isinstance(number, str):
+        if not number.isdigit():
+            return None
+        number = int(number)
+
+    if not isinstance (number, int):
+        return None 
                                             # SPECIAL CASE
-    if num == 0:                            # The test requires the result to be 0
+    if number == 0:                         # The test requires the result to be 0
       return 0                              # Returns the same value as the response
     
-    if num % 3 == 0 and num % 5 == 0:       # If both conditions are met, then return "FizzBuzz"
+    if number % 3 == 0 and number % 5 == 0: # If both conditions are met, then return "FizzBuzz"
         return "FizzBuzz"
-    elif num % 3 == 0:                      # If it is divisible by 3 and the remainder is 0
+    elif number % 3 == 0:                   # If it is divisible by 3 and the remainder is 0
         return "Fizz"                       # then return "Fizz" 
-    elif num % 5 == 0:                      # Same condition but with 5
+    elif number % 5 == 0:                   # Same condition but with 5
         return "Buzz"                       # Return "Buzz"
     
-    return num                              # It is not the special case 0, not divisible by 3 or 5, so return the same value
+    return number                           # It is not the special case 0, not divisible by 3 or 5, so return the same value
+
 
 
 def is_prime(number):                       # Defines the function and receives the parameter
@@ -46,8 +50,20 @@ def is_prime(number):                       # Defines the function and receives 
     return True                             # If the above condition is never met, then it is prime. Therefore, return True
 
 
-def is_leap_year(year):
-    pass
+def is_leap_year(year):                     # Defines the function. Year is the value to be evaluated
+    if not isinstance(year, int):           # Checks that the value is an integer
+        return None                         # If it is not, then return None
+    
+    if year % 400 == 0:                     # If it is divisible by 400
+        return True                         # Then it is a leap year
+    
+    if year % 100 == 0:                     # If it is divisible by 100
+        return False                        # Then it is not a leap year
+    
+    if year % 4 == 0:                       # If it is divisible by 4
+        return True                         # Then it is a leap yea
+    
+    return False                            # In any other case, it is not
 
 
 def do_calculator(expression):

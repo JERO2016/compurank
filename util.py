@@ -72,8 +72,37 @@ def vector_multiplication(vec, scalar):
 
 
 def matrix_addition(mat1, mat2):
-    pass
-
+    # Check that both matrices have the same number of rows                                                            
+    if len(mat1) != len(mat2):                                                             
+        return None
+    
+    # Initialize the result matrix as an empty list
+    result = []                                                                             
+    
+    # Iterate through each pair of rows from both matrices
+    for row1, row2, in zip (mat1, mat2):                  
+        # Check that both rows have the same number of elements                                  
+        if len (row1) != len(row2):                                                         
+            return None
+        
+        # Initialize a new row to store the sum of elements
+        row_result = []
+        
+         # Iterate through each pair of elements in the current rows
+        for a, b, in zip (row1, row2):      
+             # Validate that both elements are numeric                                                
+            if not isinstance (a, (int, float)) or not isinstance (b, (int, float)):        
+                return None
+            
+            # Add the elements and append the result to the new row
+            row_result.append(a + b)                                                        
+            
+        # Append the completed row to the result matrix    
+        result.append(row_result)                                                           
+        
+    # Return the resulting matrix after addition    
+    return result                               
+        
 
 def matrix_multiplication(mat1, mat2):
     pass

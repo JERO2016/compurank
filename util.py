@@ -25,33 +25,31 @@ def is_leap_year(year):
     pass
 
 
-def do_calculator(expression):                      # Define the function
-    if not isinstance(expression, str):             # Checks if a expression is a str, because the split below only works with str
-        return None                                 # If it is not, return None and stop
-    
-    if "+" in expression:                           # Identifies which math symbol the str contains    
-        operator = "+"                              # Stores the found symbol in the variable operator
-    elif "-" in expression:
-        operator = "-"                              # The variable keeps being reassigned
-    elif "*" in expression:
-        operator = "*"
-    elif "/" in expression:
-        operator = "/"    
-    else:                                           # If the string does not contain any of those symbols
-        return None                                 # Return None and stop
-
-    try:
-        left, right = expression.split(operator)    # Splits the text into two parts using the operator as a separator. They are stored in left and right
-    except ValueError:                              
+def do_calculator(expression):                      # Ensure the input is a string
+    if not isinstance(expression, str):         
         return None
+
+    operator = None                                 # Placeholder to store the detected operator
+    for op in ["+", "-", "*", "/"]:             
+        if op in expression:
+            operator = op
+            break                                   # Stop once the first operator is found
+
+    if not operator:                                # If no operator is found, the expression is invalid
+        return None
+
+    parts = expression.split(operator)              # Split the expression into two operands using the operator
     
-    try:
-        a = float(left)                             # Converts the text to numbers
-        b = float(right)
-    except ValueError:                              # If the conversion is not possible
-        return None                                 # Return None
+    p1 = parts[0]                                   # First operand
+    p2 = parts[1]                                   # Second operand
+
+    if not p1.isdigit() or not p2.isdigit():        # Validate that both operands contain only digits
+        return None                                 # isdigit() returns True only for numeric strings
     
-    if operator == "+":                             # Performs the operations
+    a = int(p1)                                     # Convert strings to integers for calculation
+    b = int(p2)
+
+    if operator == "+":                             # Perform the corresponding operation                       
         return a + b
     elif operator == "-":
         return a - b
@@ -60,7 +58,7 @@ def do_calculator(expression):                      # Define the function
     elif operator == "/":
         return a / b
     else:
-        return None
+        return None                                 # Fallback for any unexpected case
     
 
 def generate_difference_between_dates(date1, date2, unit):

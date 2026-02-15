@@ -1,3 +1,5 @@
+from datetime import datetime
+
 def is_palindrome(str_to_evaluate):         # Palindrome is a word that can be read from left to right and viceversa and retains its meaning.
     is_palindrome = False                   
    
@@ -103,8 +105,27 @@ def do_calculator(expression):                      # Ensure the input is a stri
     
 
 def generate_difference_between_dates(date1, date2, unit):
-    pass
 
+    if unit not in ("years", "months", "days"):
+        return None
+
+    date1 = datetime.strptime(date1, "%Y-%m-%d")
+    date2 = datetime.strptime(date2, "%Y-%m-%d")
+
+    if unit == "days":
+        return (date2 - date1).days
+    
+    if unit == "years":
+        years = date2.year - date1.year
+        if (date2.month, date2.day) < (date1.month, date1.day):
+            years -=1
+            return years
+
+    if unit == "months":
+        months = (date2.year - date1.year) * 12 +(date2.month - date1.month)
+        if date2.day < date1.day:
+            months -= 1
+            return months
 
 def vector_addition(vec1, vec2):                                                    
     if len(vec1) != len(vec2):                                                      # Validates that both vectors have the same length

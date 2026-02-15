@@ -106,26 +106,26 @@ def do_calculator(expression):                      # Ensure the input is a stri
 
 def generate_difference_between_dates(date1, date2, unit):
 
-    if unit not in ("years", "months", "days"):
+    if unit not in ("years", "months", "days"):                                 # Validate that the requested unit is supported
         return None
 
-    date1 = datetime.strptime(date1, "%Y-%m-%d")
+    date1 = datetime.strptime(date1, "%Y-%m-%d")                                # Convert string inputs into datetime objects
     date2 = datetime.strptime(date2, "%Y-%m-%d")
 
-    if unit == "days":
+    if unit == "days":                                                          # Calculate difference in days using direct subtraction
         return (date2 - date1).days
     
-    if unit == "years":
+    if unit == "years":                                                         # Calculate full years difference
         years = date2.year - date1.year
-        if (date2.month, date2.day) < (date1.month, date1.day):
+        if (date2.month, date2.day) < (date1.month, date1.day):                 # Adjust if the end date has not yet reached the anniversary
             years -=1
-            return years
+        return years
 
-    if unit == "months":
+    if unit == "months":                                                        # Calculate full months difference    
         months = (date2.year - date1.year) * 12 +(date2.month - date1.month)
-        if date2.day < date1.day:
+        if date2.day < date1.day:                                                # Adjust if the end day is before the start day
             months -= 1
-            return months
+        return months
 
 def vector_addition(vec1, vec2):                                                    
     if len(vec1) != len(vec2):                                                      # Validates that both vectors have the same length

@@ -1,39 +1,52 @@
-Run the tests with: `pytest`
+# Python Fundamentals Exercises
 
-If any test fails, output will be something like:
+Colección de ejercicios de fundamentos de Python desarrollados como parte de un proceso de mentoría técnica. Cada función está implementada con manejo de casos edge y validación de tipos, y verificada mediante tests unitarios con pytest.
 
+---
+
+## Ejercicios implementados
+
+### Algoritmos y lógica
+- **Palíndromo** — detecta si una cadena es palíndromo, ignorando espacios, puntuación y mayúsculas
+- **FizzBuzz** — implementación clásica con soporte para entrada numérica y string
+- **Número primo** — verifica si un número es primo con validación de tipos
+- **Año bisiesto** — aplica correctamente las reglas del calendario gregoriano (400/100/4)
+- **Calculadora** — parsea y evalúa expresiones aritméticas básicas desde un string
+
+### Fechas
+- **Diferencia entre fechas** — calcula la diferencia entre dos fechas en años, meses o días con ajuste fino de calendario
+
+### Álgebra lineal
+- **Suma de vectores** — suma elemento a elemento con validación de dimensiones
+- **Multiplicación de vector por escalar** — con validación de tipos numéricos
+- **Suma de matrices** — con validación de dimensiones y tipos
+- **Multiplicación de matrices** — implementación completa con validación de compatibilidad dimensional
+
+### Programación Orientada a Objetos (POO)
+- **Clase `Person`** — atributos de nombre y fecha de nacimiento, cálculo de edad por fecha de referencia, método de saludo entre instancias
+- **Clase `Employee`** — hereda estructura de persona, agrega rol laboral y método de información
+
+---
+
+## Tests
+
+Todos los ejercicios cuentan con tests unitarios escritos con `pytest`, incluyendo casos felices y casos edge (entradas inválidas, tipos incorrectos, valores límite).
+
+Para ejecutar los tests:
 ```bash
-======================================================== test session starts =========================================================
-platform darwin -- Python 3.10.12, pytest-9.0.2, pluggy-1.6.0
-rootdir: /Users/marcojuliomonroyayala/Archivos_trabajo_local/compurank
-plugins: anyio-4.3.0
-collected 1 item                                                                                                                     
-
-test_utils.py F                                                                                                                [100%]
-
-============================================================== FAILURES ==============================================================
-_________________________________________________________ test_is_palindrome _________________________________________________________
-
-    def test_is_palindrome():
->       assert is_palindrome("racecar")
-E       AssertionError: assert False
-E        +  where False = is_palindrome('racecar')
-
-test_utils.py:5: AssertionError
-====================================================== short test summary info =======================================================
-FAILED test_utils.py::test_is_palindrome - AssertionError: assert False
+pip install pytest
+pytest test_utils.py -v
 ```
 
-However, after fixing the issues, the output will be something like:
+---
 
-```bash
-======================================================== test session starts =========================================================
-platform darwin -- Python 3.10.12, pytest-9.0.2, pluggy-1.6.0
-rootdir: /Users/marcojuliomonroyayala/Archivos_trabajo_local/compurank
-plugins: anyio-4.3.0
-collected 1 item                                                                                                                     
+## Stack
 
-test_utils.py .                                                                                                                [100%]
+- Python 3.9+
+- pytest
 
-========================================================= 1 passed in 0.00s ==========================================================
-```
+---
+
+## Contexto
+
+Estos ejercicios fueron desarrollados como parte de un proceso de mentoría técnica, siguiendo un flujo de trabajo colaborativo con Git: fork del repositorio, implementación de cada ejercicio en ramas independientes, pull requests y revisión de código por parte del instructor.
